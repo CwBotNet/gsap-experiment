@@ -1,5 +1,25 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapTimeline = () => {
   // TODO: Implement the gsap timeline
+  const timeLine = gsap.timeline()
+
+  useGSAP(() => {
+
+    timeLine.to("#yellow-box", { x: 250, borderRadius: "15", duration: 1, ease: "power1.inOut" });
+    timeLine.to("#yellow-box", { y: 250, borderRadius: "25", duration: 1, ease: "power1.inOut" });
+    timeLine.to("#yellow-box", { x: 0, borderRadius: "75", duration: 1, ease: "power1.inOut" });
+    timeLine.to("#yellow-box", { y: 0, borderRadius: "15", duration: 1, ease: "power1.inOut" })
+  }, [])
+
+  function handlePlayPause() {
+    if (timeLine.paused()) {
+      timeLine.play()
+    } else {
+      timeLine.pause()
+    }
+  }
 
   return (
     <main>
@@ -35,7 +55,7 @@ const GsapTimeline = () => {
       </p>
 
       <div className="mt-20 space-y-10">
-        <button onClick={() => {}}>Play/Pause</button>
+        <button onClick={() => { handlePlayPause() }}>Play/Pause</button>
 
         <div id="yellow-box" className="w-20 h-20 bg-yellow-500 rounded-lg" />
       </div>
